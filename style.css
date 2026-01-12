@@ -1,0 +1,131 @@
+/* =========================================
+   1. GLOBAL VARIABLES & RESET
+   ========================================= */
+:root {
+    --primary-blue: #2563eb;
+    --primary-indigo: #4f46e5;
+    --primary-emerald: #10b981;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden; /* Mencegah scroll horizontal tak diinginkan */
+}
+
+/* Transisi halus untuk perubahan tema (Dark/Light Mode) */
+* {
+    transition-property: background-color, border-color, color, transform, box-shadow, background-image, opacity;
+    transition-duration: 300ms;
+    transition-timing-function: ease-in-out;
+}
+
+/* --- Custom Scrollbar (Agar terlihat premium) --- */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1; /* Slate-300 */
+    border-radius: 20px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background-color: #475569; /* Slate-600 */
+}
+
+/* =========================================
+   2. TYPOGRAPHY & TEXT EFFECTS
+   ========================================= */
+.gradient-text {
+    background: linear-gradient(to right, var(--primary-blue), var(--primary-emerald));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* =========================================
+   3. NAVBAR STYLING
+   ========================================= */
+.nav-scrolled {
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.dark .nav-scrolled {
+    background-color: rgba(15, 23, 42, 0.85); /* Slate-900 transparent */
+    border-bottom: 1px solid rgba(51, 65, 85, 0.8);
+}
+
+/* =========================================
+   4. BUTTONS & FILTERS
+   ========================================= */
+.btn-filter {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* State Aktif Tombol Filter (Gradient Blue-Indigo) */
+.btn-filter.active {
+    background-image: linear-gradient(to right, var(--primary-blue), var(--primary-indigo));
+    color: white !important;
+    border-color: transparent !important;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4); /* Efek Glow Biru */
+    transform: translateY(-1px);
+}
+
+/* =========================================
+   5. CARDS & UTILITIES
+   ========================================= */
+/* Efek Hover Naik untuk Kartu (Experience/Skills) */
+.hover-card-effect {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-card-effect:hover {
+    transform: translateY(-8px);
+}
+
+/* =========================================
+   6. ANIMATIONS
+   ========================================= */
+
+/* --- A. Scroll Reveal (Muncul saat discroll) --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- B. Pop In Animation (Untuk Skill Cards) --- */
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.skill-animate {
+    opacity: 0; /* Default sembunyi */
+    animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
